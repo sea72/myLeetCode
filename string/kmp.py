@@ -67,5 +67,5 @@ def KMP(S, T):
 
 T = 'aabaaf'
 print(getNext(T))
-print(getNext2(T))
+print(getNext2("021Abc9Abc1"))
 print(getPMT(T))
