@@ -1,17 +1,21 @@
 import functools
 import random
+import time
 
 def testSort(func):
     @functools.wraps(func)
     def tester():
         success = 0
+        startTime = time.perf_counter()
         for i in range(5):
-            tempList = [random.randint(0, 1000) for _ in range(10)]
+            tempList = [random.randint(0, 100000) for _ in range(10000)]
             officialSort = sorted(tempList)
             if func(tempList) == officialSort:
                 success += 1
+        endTime =  time.perf_counter()
+        elapsed = endTime - startTime
         if success == 5:
-            print(f'Success in {func.__name__}')
+            print(f'Success in {func.__name__} with {elapsed:.6f} seconds')
         else:
             print(f'Wrong in {func.__name__}')
             print(f'Your sort is {tempList}')
@@ -110,7 +114,14 @@ def partition(nums, low, high):
             low += 1
         if low < high:
             nums[high], nums[low] = nums[low], nums[high]
+    # end when low == high
+    # and ignore nums[low]'s correct position
+    # just send pivot to right position
+    # which means 1 round make right position for 1 num
     nums[low], nums[temp] = nums[temp], nums[low]
+
+
+    
     return low
 
 
@@ -243,6 +254,9 @@ def radixSort(nums):
     doRadixSort(nums, maxBits(nums))
     return nums
 
+@testSort
+def officialSort(nums):
+    return sorted(nums)
 
 if __name__ == "__main__":
     straightInsertSort()
@@ -254,3 +268,4 @@ if __name__ == "__main__":
     mergeSort()
     heapSort()
     radixSort()
+    officialSort()

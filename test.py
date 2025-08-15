@@ -49,6 +49,10 @@
 # print(a)
 
 
-for i in range(5):
-    i += 1
-    print(i)
+# for i in range(5):
+#     i += 1
+#     print(i)
+
+
+a = input().split()
+print(type(a))

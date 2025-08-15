@@ -51,4 +51,4 @@ class Solution:
         return dp[0][0]
 
 sol = Solution()
-print(sol.numDistinct('rabbbit', 'rabbit'))
+print(sol.numDistinct('redae', 'red'))
